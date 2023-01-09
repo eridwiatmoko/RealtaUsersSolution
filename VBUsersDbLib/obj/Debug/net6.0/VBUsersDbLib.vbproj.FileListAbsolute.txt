@@ -1,0 +1,12 @@
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\bin\Debug\net6.0\VBUsersDbLib.deps.json
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\bin\Debug\net6.0\VBUsersDbLib.dll
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\bin\Debug\net6.0\VBUsersDbLib.pdb
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.vbproj.AssemblyReference.cache
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.AssemblyInfoInputs.cache
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.AssemblyInfo.vb
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.vbproj.CoreCompileInputs.cache
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.dll
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\refint\VBUsersDbLib.dll
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\VBUsersDbLib.pdb
+C:\Users\E5470\source\Batch#20\RealtaUsersSolution\VBUsersDbLib\obj\Debug\net6.0\ref\VBUsersDbLib.dll
