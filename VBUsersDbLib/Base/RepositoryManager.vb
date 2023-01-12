@@ -6,6 +6,8 @@ Namespace Base
         Implements IRepositoryManager
 
         Private _usersRepository As IUsersRepository
+        Private _userRolesRepository As IUserRolesRepository
+
         Private ReadOnly _repositoryContext As IRepositoryContext
 
         Public Sub New(repositoryContext As IRepositoryContext)
@@ -22,6 +24,13 @@ Namespace Base
             End Get
         End Property
 
-
+        Public ReadOnly Property UserRoles As IUserRolesRepository Implements IRepositoryManager.UserRoles
+            Get
+                If _userRolesRepository Is Nothing Then
+                    _userRolesRepository = New UserRolesRepository(_repositoryContext)
+                End If
+                Return _userRolesRepository
+            End Get
+        End Property
     End Class
 End Namespace

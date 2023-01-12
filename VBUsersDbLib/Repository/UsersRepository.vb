@@ -108,10 +108,6 @@ Namespace Repository
             Return userList
         End Function
 
-        Public Function FindAllRegionAsync() As Task(Of List(Of Users)) Implements IUsersRepository.FindAllRegionAsync
-            Throw New NotImplementedException()
-        End Function
-
         Public Function FindUserById(id As Integer) As Users Implements IUsersRepository.FindUserById
             Dim users As New Users With {.UserId = id}
 
@@ -188,7 +184,73 @@ Namespace Repository
         End Function
 
         Public Function UpdateUserBySp(id As Integer, name As String, type As String, company As String, email As String, phone As String, Optional showCommand As Boolean = False) As Boolean Implements IUsersRepository.UpdateUserBySp
-            Throw New NotImplementedException()
+            Dim updateUser As New Users()
+
+            'declare stmt
+            Dim stmt As String = "users.spUpdateUser"
+
+
+            Using conn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = conn, .CommandText = stmt, .CommandType = Data.CommandType.StoredProcedure}
+                    cmd.Parameters.AddWithValue("@user_id", id)
+                    cmd.Parameters.AddWithValue("@user_full_name", name)
+                    cmd.Parameters.AddWithValue("@user_type", type)
+                    cmd.Parameters.AddWithValue("@user_company_name", company)
+                    cmd.Parameters.AddWithValue("@user_email", email)
+                    cmd.Parameters.AddWithValue("@user_phone_number", phone)
+
+                    'show command
+                    If showCommand Then
+                        Console.WriteLine(cmd.CommandText)
+                    End If
+
+                    Try
+                        conn.Open()
+                        cmd.ExecuteNonQuery()
+
+                        conn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                End Using
+            End Using
+            Return True
+        End Function
+
+        Public Async Function FindAllUserAsync() As Task(Of List(Of Users)) Implements IUsersRepository.FindAllUserAsync
+            Dim userList As New List(Of Users)
+
+            'declare statement
+            Dim sql As String = "SELECT user_id,user_full_name,user_type,user_company_name,user_email,user_phone_number,user_modified_date from users.users " &
+                                "Order by user_id desc;"
+
+            'try to connect
+            Using conn As New SqlConnection With {.ConnectionString = _context.GetConnectionString}
+                Using cmd As New SqlCommand With {.Connection = conn, .CommandText = sql}
+                    Try
+                        conn.Open()
+                        Dim reader = Await cmd.ExecuteReaderAsync()
+
+                        While reader.Read()
+                            userList.Add(New Users() With {
+                                .UserId = reader.GetInt32(0),
+                                .UserFullName = reader.GetString(1),
+                                .UserType = reader.GetString(2),
+                                .UserCompanyName = reader.GetString(3),
+                                .UserEmail = reader.GetString(4),
+                                .UserPhoneNumber = reader.GetString(5),
+                                .UserModifiedDate = reader.GetDateTime(6)
+                            })
+                        End While
+
+                        reader.Close()
+                        conn.Close()
+                    Catch ex As Exception
+                        Console.WriteLine(ex.Message)
+                    End Try
+                End Using
+            End Using
+            Return userList
         End Function
     End Class
 End Namespace
